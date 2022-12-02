@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { Question } from '../question';
 import { QuestionsService } from '../questions.service';
 
@@ -12,8 +13,9 @@ export class AdminPanelComponent implements OnInit {
     "id", "answer", "firstPicture", "secondPicture"
   ]
   dataSource: Question[] = []
+  
   constructor(private quesionService: QuestionsService) { 
-    this.dataSource = quesionService.dataSource
+   quesionService.getQuestions().subscribe((questions)=> (this.dataSource = questions))
   }
 
   ngOnInit(): void {
