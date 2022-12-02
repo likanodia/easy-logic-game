@@ -13,17 +13,21 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
     "id", "answer", "firstPicture", "secondPicture", "action"
   ]
   dataSource: Question[] = []
-  questionSubscribtion: Subscription
+  questionSubscribtion: Subscription = new Subscription;
   
   constructor(private quesionService: QuestionsService) { 
-   this.questionSubscribtion = quesionService.getQuestions().subscribe((questions)=> (this.dataSource = questions))
+    this.getQuestions()
   }
 
   ngOnInit(): void {
   }
 
+  getQuestions(){
+    this.questionSubscribtion = this.quesionService.getQuestions().subscribe((questions)=> (this.dataSource = questions))
+  }
+
   delete(element:Question){
-    console.log(element);
+    this.quesionService.deleteQuestion(element.id).subscribe(()=>(this.getQuestions()))
   }
   ngOnDestroy(): void {
     this.questionSubscribtion.unsubscribe()
