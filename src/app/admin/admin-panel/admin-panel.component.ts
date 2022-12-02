@@ -10,7 +10,7 @@ import { QuestionsService } from '../questions.service';
 })
 export class AdminPanelComponent implements OnInit, OnDestroy {
   displayedColumns: string[]=[
-    "id", "answer", "firstPicture", "secondPicture"
+    "id", "answer", "firstPicture", "secondPicture", "action"
   ]
   dataSource: Question[] = []
   questionSubscribtion: Subscription
@@ -20,6 +20,10 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+  }
+
+  delete(element:Question){
+    console.log(element);
   }
   ngOnDestroy(): void {
     this.questionSubscribtion.unsubscribe()
