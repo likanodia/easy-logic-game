@@ -18,4 +18,7 @@ export class QuestionsService {
   deleteQuestion(id: number):Observable<any>{
     return this.http.delete("http://localhost:3000/questions/"+id)
   }
+  addQuestion(data:Question){
+    return this.http.post<Question>("http://localhost:3000/questions/", data)
+  }
 }

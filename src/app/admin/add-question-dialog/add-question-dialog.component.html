@@ -1,15 +1,14 @@
-<h2>Add logic question </h2>
-<form>
-    <mat-form-field appearance="outline">
+<h2>Add Easy Logic </h2>
+<form [formGroup]="questionForm">
+    <mat-form-field appearance="fill">
         <mat-label>Write answer</mat-label>
-        <input matInput placeholder="Write answer">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-     </mat-form-field>
+        <input formControlName = "answer" matInput >
+      </mat-form-field>
      <div class="file-upload-wraper">
-        <input type="file"  id="fileUpload"  name="fileUpload"/>
+        <input formControlName = "firstPicture" type="file"  id="fileUpload"  name="fileUpload"/>
       </div>
     <div class="file-upload-wraper">
-        <input type="file"  id="fileUpload"  name="fileUpload"/>
+        <input formControlName = "secondPicture" type="file"  id="fileUpload"  name="fileUpload"/>
     </div>
     <button mat-raised-button color="primary" class="button">Save</button>
     <button mat-raised-button color="warn" class="button">Close</button>
