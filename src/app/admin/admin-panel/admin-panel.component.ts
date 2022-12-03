@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map, Observable, Subscription } from 'rxjs';
 import { Question } from '../question';
 import { QuestionsService } from '../questions.service';
+import { AddQuestionDialogComponent } from '../add-question-dialog/add-question-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-panel',
@@ -15,7 +17,7 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
   dataSource: Question[] = []
   questionSubscribtion: Subscription = new Subscription;
   
-  constructor(private quesionService: QuestionsService) { 
+  constructor(private quesionService: QuestionsService, private dialog: MatDialog) { 
     this.getQuestions()
   }
 
@@ -28,6 +30,11 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
 
   delete(element:Question){
     this.quesionService.deleteQuestion(element.id).subscribe(()=>(this.getQuestions()))
+  }
+  openDialog(){
+    this.dialog.open(AddQuestionDialogComponent, {
+      width: '30%'
+    })
   }
   ngOnDestroy(): void {
     this.questionSubscribtion.unsubscribe()
