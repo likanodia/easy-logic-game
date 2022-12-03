@@ -4,3 +4,4 @@ export interface Question {
     secondPicture: string;
     id: number;
 }
+export type INewQuestion = Pick<Question, 'answer' | 'firstPicture' | 'secondPicture'>

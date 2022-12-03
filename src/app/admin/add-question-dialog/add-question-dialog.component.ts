@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { INewQuestion, Question } from '../question';
 import { QuestionsService } from '../questions.service';
 
 
@@ -22,5 +23,18 @@ export class AddQuestionDialogComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+  onAddQuestion(){
+    console.log(this.questionForm.value);
+    if (this.questionForm.valid) {
+      this.questionService.addQuestion(this.questionForm.value as INewQuestion).subscribe((data)=>{
+        alert('Your question added');
+        this.questionForm.reset();
+      })
+      error: () =>{
+        alert('ERR');
+      }
+      
+    }
+    
+  }
 }

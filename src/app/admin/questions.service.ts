@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Question } from './question';
+import { INewQuestion, Question } from './question';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
@@ -18,7 +18,7 @@ export class QuestionsService {
   deleteQuestion(id: number):Observable<any>{
     return this.http.delete("http://localhost:3000/questions/"+id)
   }
-  addQuestion(data:Question){
-    return this.http.post<Question>("http://localhost:3000/questions/", data)
+  addQuestion(data:INewQuestion){
+    return this.http.post<INewQuestion>("http://localhost:3000/questions/", data)
   }
 }
