@@ -4,19 +4,17 @@ import { HeaderComponent } from './header/header.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AdminModule } from '../admin/admin.module';
 import { GameModule } from '../game/game.module';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
-  declarations: [
-    HeaderComponent
-  ],
+  declarations: [HeaderComponent],
   imports: [
     CommonModule,
     MatTabsModule,
     AdminModule,
     GameModule,
+    MatGridListModule,
   ],
-  exports: [
-    HeaderComponent
-  ]
+  exports: [HeaderComponent],
 })
-export class HeaderModule { }
+export class HeaderModule {}

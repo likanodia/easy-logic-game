@@ -3,3 +3,15 @@
 </div>
 
 
+
+<mat-grid-list cols="2" rowHeight="2:1" *ngIf="!isStartButtonVisible">
+    <mat-grid-tile>{{ticker}}🕒</mat-grid-tile>
+    <mat-grid-tile><p *ngIf="gameQuestion"> Hint: [ {{hint}} ]</p></mat-grid-tile>
+    <mat-grid-tile><img mat-card-image src="{{gameQuestion.firstPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
+    <mat-grid-tile><img mat-card-image src="{{gameQuestion.secondPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
+    <mat-grid-tile>Answer: <input type="text" [(ngModel)]="userAnswer" ></mat-grid-tile>
+    <mat-grid-tile><button (click)="nextQuestion()" mat-fab color="primary">NextQuestion</button></mat-grid-tile>
+</mat-grid-list>
+
+
+
