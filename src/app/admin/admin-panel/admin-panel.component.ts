@@ -33,7 +33,7 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
   getQuestions() {
     this.questionSubscribtion = this.quesionService
       .getQuestions()
-      .subscribe((questions) => (this.dataSource = questions));    
+      .subscribe((questions) => (this.dataSource = questions));
   }
 
   delete(element: Question) {
@@ -49,7 +49,7 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
       .afterClosed()
       .subscribe((result) => {
         if (result === 'true') {
-          setTimeout(() => this.getQuestions(),500)
+          setTimeout(() => this.getQuestions(), 500);
         }
       });
   }
