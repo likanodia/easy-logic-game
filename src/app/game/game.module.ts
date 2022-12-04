@@ -5,6 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatBadgeModule} from '@angular/material/badge';
+
+
 
 @NgModule({
   declarations: [GameBoardComponent],
@@ -14,6 +20,10 @@ import { FormsModule } from '@angular/forms';
     MatGridListModule,
     MatIconModule,
     FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatBadgeModule
   ],
   exports: [GameBoardComponent],
 })

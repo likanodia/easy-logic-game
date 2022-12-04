@@ -3,15 +3,27 @@
 </div>
 
 
-
-<mat-grid-list cols="2" rowHeight="2:1" *ngIf="!isStartButtonVisible">
+<div class="game-board-div" *ngIf="!isStartButtonVisible">
+<mat-grid-list cols="2" rowHeight="2:1" >
     <mat-grid-tile>{{ticker}}🕒</mat-grid-tile>
-    <mat-grid-tile><p *ngIf="gameQuestion"> Hint: [ {{hint}} ]</p></mat-grid-tile>
-    <mat-grid-tile><img mat-card-image src="{{gameQuestion.firstPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
-    <mat-grid-tile><img mat-card-image src="{{gameQuestion.secondPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
-    <mat-grid-tile>Answer: <input type="text" [(ngModel)]="userAnswer" ></mat-grid-tile>
-    <mat-grid-tile><button (click)="nextQuestion()" mat-fab color="primary">NextQuestion</button></mat-grid-tile>
+    <mat-grid-tile>{{ticker}}🕒</mat-grid-tile>
+    <mat-grid-tile><img mat-card-image class="game-img" src="{{gameQuestion.firstPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
+    <mat-grid-tile><img mat-card-image class="game-img"  src="{{gameQuestion.secondPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card style="margin-right: 10px; margin-bottom: 15px;"> <div matBadge="hint"  matBadgeColor="accent" matBadgeOverlap="false" class="demo-section">  {{hint}} </div> </mat-card>
+        <mat-form-field appearance="outline">
+            <mat-label>Answer</mat-label>
+            <input [(ngModel)]="userAnswer"  matInput placeholder="write answer">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile><button (click)="nextQuestion()" mat-raised-button color="primary">Next Question</button></mat-grid-tile>
 </mat-grid-list>
+</div>
+
+
+
+
 
 
 
