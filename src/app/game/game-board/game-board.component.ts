@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameBoardComponent implements OnInit {
 
+  isStartButtonVisible:boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+  startGame (){
+    this.isStartButtonVisible = false;
   }
 
 }
