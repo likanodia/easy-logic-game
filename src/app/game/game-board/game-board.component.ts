@@ -57,7 +57,8 @@ export class GameBoardComponent implements OnInit {
     this.gameQuestion = this.allQuestions[this.questionIndex];
     this.hint = this.generateHint(this.gameQuestion.answer);
     this.questionIndex++;
-    
+    this.userAnswer = '';
+
   }
 
   skipQuestion() {
