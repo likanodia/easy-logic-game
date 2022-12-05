@@ -5,6 +5,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AdminModule } from '../admin/admin.module';
 import { GameModule } from '../game/game.module';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { LeaderboardModule } from '../leaderboard/leaderboard.module';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -14,6 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     AdminModule,
     GameModule,
     MatGridListModule,
+    LeaderboardModule,
   ],
   exports: [HeaderComponent],
 })
