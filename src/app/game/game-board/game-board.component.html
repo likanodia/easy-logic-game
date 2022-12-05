@@ -13,14 +13,12 @@
         <mat-card style="margin-right: 10px; margin-bottom: 15px;"> <div matBadge="hint"  matBadgeColor="warn" matBadgeOverlap="false" class="demo-section">  {{hint}} </div> </mat-card>
         <mat-form-field appearance="outline">
             <mat-label>Answer</mat-label>
-            <input [(ngModel)]="userAnswer"  matInput placeholder="write answer">
+            <input (keyup)="checkAnswer()" [(ngModel)]="userAnswer"  matInput placeholder="write answer">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
         <button (click)="skipQuestion() "*ngIf="isSkipButtonVisible" mat-raised-button color="warn">Skip</button>
-        <button (click)="checkAnswer()" mat-raised-button color="primary" class="next-button">Next</button>    
-        <!-- <button mat-raised-button color="accent" class="next-button">Close</button>     -->
     </mat-grid-tile>
 </mat-grid-list>
 </div>
