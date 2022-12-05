@@ -6,6 +6,7 @@ import { AdminModule } from '../admin/admin.module';
 import { GameModule } from '../game/game.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LeaderboardModule } from '../leaderboard/leaderboard.module';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -16,6 +17,7 @@ import { LeaderboardModule } from '../leaderboard/leaderboard.module';
     GameModule,
     MatGridListModule,
     LeaderboardModule,
+    AuthModule
   ],
   exports: [HeaderComponent],
 })
