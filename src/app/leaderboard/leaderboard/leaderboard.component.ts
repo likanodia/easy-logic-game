@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from '../user';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-leaderboard',
@@ -8,19 +9,14 @@ import { IUser } from '../user';
 })
 export class LeaderboardComponent implements OnInit {
   displayedColumns: string[] = ['number', 'name', 'score'];
-  dataSource: IUser[] = [
-    {
-      id: 1,
-      name: 'lika',
-      lastName: '',
-      email: '',
-      password: '',
-      highScore: 5,
-      isAdmin: true,
-    },
-  ];
+  dataSource: IUser[] = [];
 
-  constructor() {}
+  constructor(private userService: UsersService) {
+    this.getLeaderBoardData();
+  }
+  getLeaderBoardData() {
+    this.userService.getUsers().subscribe((users) => (this.dataSource = users));
+  }
 
   ngOnInit(): void {}
 }
