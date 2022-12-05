@@ -10,15 +10,19 @@ import { QuestionsService } from '../questions.service';
   styleUrls: ['./add-question-dialog.component.scss'],
 })
 export class AddQuestionDialogComponent implements OnInit {
-  @ViewChild('fileUpload')
-  public fileUpload!: ElementRef<HTMLInputElement>;
+  @ViewChild('firstFileUpload')
+  public firstFileUpload!: ElementRef<HTMLInputElement>;
+  @ViewChild('secondFileUpload')
+  public secondFileUpload!: ElementRef<HTMLInputElement>;
+  
 
   questionForm = new FormGroup({
     answer: new FormControl('', [Validators.required]),
     firstPicture: new FormControl('', [Validators.required]),
     secondPicture: new FormControl('', [Validators.required]),
   });
-  firstPicture: any;
+  firstPictureBase64: string = '';
+  secondPictureBase64: string = '';
 
   constructor(
     private questionService: QuestionsService,
@@ -28,9 +32,14 @@ export class AddQuestionDialogComponent implements OnInit {
   ngOnInit(): void {}
   onAddQuestion() {
     console.log(this.questionForm.value);
+
     if (this.questionForm.valid) {
       this.questionService
-        .addQuestion(this.questionForm.value as INewQuestion)
+        .addQuestion({
+          answer: this.questionForm.value.answer,
+          firstPicture: this.firstPictureBase64,
+          secondPicture: this.secondPictureBase64,
+        } as INewQuestion)
         .subscribe((data) => {
           this.questionForm.reset();
           this.dialog.closeAll();
@@ -40,13 +49,23 @@ export class AddQuestionDialogComponent implements OnInit {
       };
     }
   }
-  getBase64() {
-    const file = this.fileUpload.nativeElement?.files![0];
+  getFirstPictureBase64() {
+    const file = this.firstFileUpload.nativeElement?.files![0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      console.log(reader.result);
-      this.firstPicture.setValue(reader.result, { emitEvent: false });
+      this.firstPictureBase64 = reader.result as string;
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+  getSecondPictureBase64() {
+    const file = this.secondFileUpload.nativeElement?.files![0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.secondPictureBase64 = reader.result as string;
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);

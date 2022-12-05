@@ -5,10 +5,10 @@
         <input formControlName = "answer" matInput >
       </mat-form-field>
      <div class="file-upload-wraper">
-        <input #fileUpload formControlName = "firstPicture" type="file"  id="fileUpload"  name="fileUpload" (input)="getBase64()"/>
+        <input #firstFileUpload formControlName = "firstPicture" type="file"  id="fileUpload"  name="fileUpload" (input)="getFirstPictureBase64()"/>
       </div>
     <div class="file-upload-wraper">
-        <input formControlName = "secondPicture" type="file"  id="fileUpload"  name="fileUpload"/>
+        <input #secondFileUpload  formControlName = "secondPicture" type="file"  id="fileUpload"  name="fileUpload" (input)="getSecondPictureBase64()"/>
     </div>
     <button mat-dialog-close="true" (click)="onAddQuestion()" mat-raised-button color="primary" class="button">Save</button>
     <button mat-dialog-close="false" mat-raised-button color="warn" class="button">Close</button>
