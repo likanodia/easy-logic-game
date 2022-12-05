@@ -14,7 +14,6 @@ export class AddQuestionDialogComponent implements OnInit {
   public firstFileUpload!: ElementRef<HTMLInputElement>;
   @ViewChild('secondFileUpload')
   public secondFileUpload!: ElementRef<HTMLInputElement>;
-  
 
   questionForm = new FormGroup({
     answer: new FormControl('', [Validators.required]),
@@ -49,6 +48,7 @@ export class AddQuestionDialogComponent implements OnInit {
       };
     }
   }
+
   getFirstPictureBase64() {
     const file = this.firstFileUpload.nativeElement?.files![0];
     const reader = new FileReader();
@@ -60,6 +60,7 @@ export class AddQuestionDialogComponent implements OnInit {
       console.log('Error: ', error);
     };
   }
+
   getSecondPictureBase64() {
     const file = this.secondFileUpload.nativeElement?.files![0];
     const reader = new FileReader();

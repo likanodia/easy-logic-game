@@ -18,8 +18,8 @@
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button (click)="nextQuestion()"*ngIf="isSkipButtonVisible" mat-raised-button color="warn">Skip</button>
-        <button (click)="nextQuestion()" mat-raised-button color="primary" class="next-button">Next</button>    
+        <button (click)="skipQuestion() "*ngIf="isSkipButtonVisible" mat-raised-button color="warn">Skip</button>
+        <button (click)="checkAnswer()" mat-raised-button color="primary" class="next-button">Next</button>    
         <!-- <button mat-raised-button color="accent" class="next-button">Close</button>     -->
     </mat-grid-tile>
 </mat-grid-list>

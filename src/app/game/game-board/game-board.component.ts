@@ -16,11 +16,11 @@ export class GameBoardComponent implements OnInit {
   questionIndex: number = 0;
   hint: string = '********';
   userAnswer: string = '';
-  userScore: number ;
+  userScore: number;
   isSkipButtonVisible: boolean = true;
 
   constructor(private questionService: QuestionsService) {
-    this.userScore = -1;
+    this.userScore = 0;
   }
 
   ngOnInit(): void {}
@@ -46,17 +46,30 @@ export class GameBoardComponent implements OnInit {
     });
   }
 
+  checkAnswer() {
+    if (this.isCorrectAnswer()) {
+      this.nextQuestion();
+      this.userScore++;
+    }
+  }
 
   nextQuestion() {
+    this.gameQuestion = this.allQuestions[this.questionIndex];
+    this.hint = this.generateHint(this.gameQuestion.answer);
+    this.questionIndex++;
+  }
+
+  skipQuestion() {
+    this.nextQuestion();
+    this.isSkipButtonVisible = false;
+
+  }
+
+  isCorrectAnswer(): boolean {
     if (this.gameQuestion && this.gameQuestion.answer != this.userAnswer) {
-      // alert('Wrong Answer');
-      this.gameQuestion = this.allQuestions[this.questionIndex];
-      this.isSkipButtonVisible = false;
+      return false;
     } else {
-      this.gameQuestion = this.allQuestions[this.questionIndex];
-      this.hint = this.generateHint(this.gameQuestion.answer);
-      this.questionIndex++;
-      this.userScore ++;
+      return true;
     }
   }
 
@@ -71,7 +84,6 @@ export class GameBoardComponent implements OnInit {
   replaceChar(origString: string, replaceChar: string, index: number): string {
     let firstPart = origString.substr(0, index);
     let lastPart = origString.substr(index + 1);
-
     let newString = firstPart + replaceChar + lastPart;
     return newString;
   }
