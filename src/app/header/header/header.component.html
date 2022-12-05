@@ -1,3 +1,25 @@
+
+<div>
+    <mat-toolbar class="game-dashboard">
+      <div>
+        <span>Easy Logic game</span>
+        <span class="example-spacer"></span>
+        <button
+          mat-icon-button
+          matTooltip="warn"
+          color="warn"
+          aria-label="Example icon-button with a heart icon"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </div>
+  
+      <button mat-raised-button color="warn" >
+        Sign out
+      </button>
+    </mat-toolbar>
+  </div>
+
 <mat-tab-group mat-align-tabs="center" [backgroundColor]="'warn'">
     <mat-tab label="LeaderBoard"> 
         <app-leaderboard></app-leaderboard>
