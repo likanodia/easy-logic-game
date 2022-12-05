@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Subscription, interval, take } from 'rxjs';
 import { Question } from 'src/app/admin/question';
 import { QuestionsService } from 'src/app/admin/questions.service';
@@ -17,8 +16,12 @@ export class GameBoardComponent implements OnInit {
   questionIndex: number = 0;
   hint: string = '********';
   userAnswer: string = '';
+  userScore: number ;
+  isSkipButtonVisible: boolean = true;
 
-  constructor(private questionService: QuestionsService) {}
+  constructor(private questionService: QuestionsService) {
+    this.userScore = -1;
+  }
 
   ngOnInit(): void {}
 
@@ -42,13 +45,18 @@ export class GameBoardComponent implements OnInit {
       }
     });
   }
+
+
   nextQuestion() {
     if (this.gameQuestion && this.gameQuestion.answer != this.userAnswer) {
-      alert('Wrong Answer');
+      // alert('Wrong Answer');
+      this.gameQuestion = this.allQuestions[this.questionIndex];
+      this.isSkipButtonVisible = false;
     } else {
       this.gameQuestion = this.allQuestions[this.questionIndex];
       this.hint = this.generateHint(this.gameQuestion.answer);
       this.questionIndex++;
+      this.userScore ++;
     }
   }
 
@@ -73,7 +81,6 @@ export class GameBoardComponent implements OnInit {
   }
 
   outOfTime() {
-    console.log('Time Over');
-    alert('Out of Time');
+    alert('Out of Time!');
   }
 }

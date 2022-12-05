@@ -6,7 +6,7 @@
 <div class="game-board-div" *ngIf="!isStartButtonVisible">
 <mat-grid-list cols="2" rowHeight="2:1" >
     <mat-grid-tile>{{ticker}}🕒</mat-grid-tile>
-    <mat-grid-tile>{{ticker}}🕒</mat-grid-tile>
+    <mat-grid-tile>Your score: {{userScore}}</mat-grid-tile>
     <mat-grid-tile><img mat-card-image class="game-img" src="{{gameQuestion.firstPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
     <mat-grid-tile><img mat-card-image class="game-img"  src="{{gameQuestion.secondPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
     <mat-grid-tile>
@@ -17,9 +17,14 @@
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile><button (click)="nextQuestion()" mat-raised-button color="primary">Next Question</button></mat-grid-tile>
+    <mat-grid-tile>
+        <button (click)="nextQuestion()"*ngIf="isSkipButtonVisible" mat-raised-button color="warn">Skip</button>
+        <button (click)="nextQuestion()" mat-raised-button color="primary" class="next-button">Next</button>    
+        <!-- <button mat-raised-button color="accent" class="next-button">Close</button>     -->
+    </mat-grid-tile>
 </mat-grid-list>
 </div>
+
 
 
 
