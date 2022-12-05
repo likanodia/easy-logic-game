@@ -6,7 +6,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   hide: any;
@@ -38,9 +38,19 @@ export class LoginComponent implements OnInit {
     return this.password.hasError('password') ? 'Not a valid password' : '';
   }
 
+  ngOnInit(): void {}
 
-
-  ngOnInit(): void {
+  onSubmit(): void {
+    console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      this.auth.login(this.loginForm.value).subscribe(
+        (result) => {
+          this.router.navigate(['admin']);
+        },
+        (err: Error) => {
+          alert(err.message);
+        }
+      );
+    }
   }
-
 }
