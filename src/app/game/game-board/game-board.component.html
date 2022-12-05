@@ -1,5 +1,5 @@
 <div class = "startButton">
-    <button (click)="startGame()" *ngIf="isStartButtonVisible"  mat-raised-button color="accent">Click to start game</button>
+    <button (click)="startGame()" *ngIf="isStartButtonVisible"  mat-raised-button color="warn">Click to start game</button>
 </div>
 
 
@@ -10,7 +10,7 @@
     <mat-grid-tile><img mat-card-image class="game-img" src="{{gameQuestion.firstPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
     <mat-grid-tile><img mat-card-image class="game-img"  src="{{gameQuestion.secondPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
     <mat-grid-tile>
-        <mat-card style="margin-right: 10px; margin-bottom: 15px;"> <div matBadge="hint"  matBadgeColor="accent" matBadgeOverlap="false" class="demo-section">  {{hint}} </div> </mat-card>
+        <mat-card style="margin-right: 10px; margin-bottom: 15px;"> <div matBadge="hint"  matBadgeColor="warn" matBadgeOverlap="false" class="demo-section">  {{hint}} </div> </mat-card>
         <mat-form-field appearance="outline">
             <mat-label>Answer</mat-label>
             <input [(ngModel)]="userAnswer"  matInput placeholder="write answer">

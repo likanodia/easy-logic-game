@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { INewQuestion, Question } from '../question';
@@ -10,12 +10,20 @@ import { QuestionsService } from '../questions.service';
   styleUrls: ['./add-question-dialog.component.scss'],
 })
 export class AddQuestionDialogComponent implements OnInit {
+  @ViewChild('fileUpload')
+  public fileUpload!: ElementRef<HTMLInputElement>;
+
   questionForm = new FormGroup({
     answer: new FormControl('', [Validators.required]),
     firstPicture: new FormControl('', [Validators.required]),
     secondPicture: new FormControl('', [Validators.required]),
   });
-  constructor(private questionService: QuestionsService, private dialog:MatDialog)  {}
+  firstPicture: any;
+
+  constructor(
+    private questionService: QuestionsService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
   onAddQuestion() {
@@ -31,5 +39,17 @@ export class AddQuestionDialogComponent implements OnInit {
         alert('ERR');
       };
     }
+  }
+  getBase64() {
+    const file = this.fileUpload.nativeElement?.files![0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      console.log(reader.result);
+      this.firstPicture.setValue(reader.result, { emitEvent: false });
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
   }
 }
