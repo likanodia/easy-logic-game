@@ -11,7 +11,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  signOut() {
+  signOut(): void {
     this.auth.logout();
+  }
+  isUserAdmin(): boolean{
+    return this.auth.isAdmin();
   }
 }

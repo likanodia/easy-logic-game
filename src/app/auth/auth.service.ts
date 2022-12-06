@@ -29,6 +29,14 @@ export class AuthService {
       this.setToken('admin');
       return of({ name: 'admin', email: 'admin@gmail.com' });
     }
+    if (email === 'user@gmail.com' && password === '123') {
+      this.setToken('user');
+      return of({ name: 'user', email: 'user@gmail.com' });
+    }
     return throwError(new Error('Failed to Login'));
+  }
+
+  isAdmin(): boolean {
+    return this.getToken() == 'admin';
   }
 }

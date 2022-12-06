@@ -16,7 +16,7 @@
 
 <div class="tab-container">
     <nav mat-tab-nav-bar class="mat-elevation-z8">
-        <a mat-tab-link routerLink="/admin">
+        <a *ngIf="isUserAdmin()" mat-tab-link routerLink="/admin">
             <mat-icon>admin_panel_settings</mat-icon>
             <span>Admin</span>
         </a>
