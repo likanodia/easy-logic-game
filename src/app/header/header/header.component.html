@@ -1,34 +1,47 @@
-
-<div>
+<!-- <div>
     <mat-toolbar class="game-dashboard">
-      <div>
-        <span>Easy Logic game</span>
-        <span class="example-spacer"></span>
-        <button
-          mat-icon-button
-          matTooltip="warn"
-          color="warn"
-          aria-label="Example icon-button with a heart icon"
-        >
-          <mat-icon>favorite</mat-icon>
-        </button>
-      </div>
-  
-      <button mat-raised-button color="warn" (click)="signOut()">
-        Sign out
-      </button>
-    </mat-toolbar>
-  </div>
+        <div>
+            <span>Easy Logic game</span>
+            <span class="example-spacer"></span>
+            <button mat-icon-button matTooltip="warn" color="warn" aria-label="Example icon-button with a heart icon">
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </div>
 
+        <button mat-raised-button color="warn" (click)="signOut()">
+            Sign out
+        </button>
+    </mat-toolbar>
+</div> -->
+<!-- 
 <mat-tab-group mat-align-tabs="center" [backgroundColor]="'warn'">
-    <mat-tab label="LeaderBoard"> 
+    <mat-tab label="LeaderBoard">
         <app-leaderboard></app-leaderboard>
     </mat-tab>
-    <mat-tab label="Game" > 
+    <mat-tab label="Game">
         <app-game-board></app-game-board>
     </mat-tab>
-    <mat-tab label="Admin"> 
+    <mat-tab label="Admin">
         <app-admin-panel></app-admin-panel>
     </mat-tab>
-  </mat-tab-group>
-  
+</mat-tab-group> -->
+
+<div class="tab-container">
+    <nav mat-tab-nav-bar class="mat-elevation-z8">
+        <a mat-tab-link routerLink="/admin">
+            <mat-icon>admin_panel_settings</mat-icon>
+            <span>Admin</span>
+        </a>
+        <a mat-tab-link routerLink="/game">
+            <mat-icon>videogame_asset</mat-icon>
+            <span>Game</span>
+        </a>
+        <a mat-tab-link routerLink="/leaderboard">
+            <mat-icon>leaderboard</mat-icon>
+            <span>Leaderboard</span>
+        </a>
+    </nav>
+</div>
+
+
+<router-outlet></router-outlet>

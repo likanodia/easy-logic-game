@@ -9,21 +9,23 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  hide: any;
+  hide: boolean = true;
 
   constructor(private router: Router, private auth: AuthService) {}
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
 
   get email() {
     return this.loginForm.get('email') as FormControl;
   }
+
   get password() {
     return this.loginForm.get('password') as FormControl;
   }
+
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';

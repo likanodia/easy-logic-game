@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './header/header.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,8 @@ import { AuthModule } from './auth/auth.module';
     BrowserAnimationsModule,
     HeaderModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

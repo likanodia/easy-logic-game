@@ -10,6 +10,7 @@ import { AuthModule } from '../auth/auth.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -23,8 +24,9 @@ import { MatButtonModule } from '@angular/material/button';
     AuthModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    AppRoutingModule,
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, MatTabsModule],
 })
 export class HeaderModule {}
