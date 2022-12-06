@@ -42,7 +42,7 @@ export class LoginComponent {
 
   togglePasswordVisibility(event: any): void {
     this.hide = !this.hide;
-    event.preventdefault();
+    event.preventDefault();
   }
 
   onSubmit(): void {
