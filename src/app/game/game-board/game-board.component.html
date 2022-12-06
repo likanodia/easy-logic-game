@@ -1,32 +1,34 @@
-<div class = "startButton">
-    <button (click)="startGame()" *ngIf="isStartButtonVisible"  mat-raised-button color="warn">Click to start game</button>
+<div class="startButton">
+    <button (click)="startGame()" *ngIf="isStartButtonVisible" mat-raised-button color="warn">Click to start
+        game</button>
 </div>
 
 
 <div class="game-board-div" *ngIf="!isStartButtonVisible">
-<mat-grid-list cols="2" rowHeight="2:1" >
-    <mat-grid-tile>{{ticker}}🕒</mat-grid-tile>
-    <mat-grid-tile>Your score: {{userScore}}</mat-grid-tile>
-    <mat-grid-tile><img mat-card-image class="game-img" src="{{gameQuestion.firstPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
-    <mat-grid-tile><img mat-card-image class="game-img"  src="{{gameQuestion.secondPicture}}" *ngIf="gameQuestion"></mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card style="margin-right: 10px; margin-bottom: 15px;"> <div matBadge="hint"  matBadgeColor="warn" matBadgeOverlap="false" class="demo-section">  {{hint}} </div> </mat-card>
-        <mat-form-field appearance="outline">
-            <mat-label>Answer</mat-label>
-            <input (keyup)="checkAnswer()" [(ngModel)]="userAnswer"  matInput placeholder="write answer">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <button (click)="skipQuestion() "*ngIf="isSkipButtonVisible" mat-raised-button color="warn">Skip</button>
-    </mat-grid-tile>
-</mat-grid-list>
+    <mat-grid-list *ngIf="!isGameOver" cols="2" rowHeight="2:1">
+        <mat-grid-tile>{{ticker}}🕒</mat-grid-tile>
+        <mat-grid-tile>Your score: {{userScore}}</mat-grid-tile>
+        <mat-grid-tile><img mat-card-image class="game-img" src="{{gameQuestion.firstPicture}}" *ngIf="gameQuestion">
+        </mat-grid-tile>
+        <mat-grid-tile><img mat-card-image class="game-img" src="{{gameQuestion.secondPicture}}" *ngIf="gameQuestion">
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card style="margin-right: 10px; margin-bottom: 15px;">
+                <div matBadge="hint" matBadgeColor="warn" matBadgeOverlap="false" class="demo-section"> {{hint}} </div>
+            </mat-card>
+            <mat-form-field appearance="outline">
+                <mat-label>Answer</mat-label>
+                <input (keyup)="checkAnswer()" [(ngModel)]="userAnswer" matInput placeholder="write answer">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button (click)="skipQuestion() " *ngIf="isSkipButtonVisible" mat-raised-button color="warn">Skip</button>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
 
-
-
-
-
-
-
-
+<div class="game-board-div" *ngIf="isGameOver">
+    <span> Game Over</span>
+    <p>Your score is {{userScore}}</p>
+</div>

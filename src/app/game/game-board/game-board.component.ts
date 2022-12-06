@@ -8,7 +8,7 @@ import { QuestionsService } from 'src/app/admin/questions.service';
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.scss'],
 })
-export class GameBoardComponent implements OnInit {
+export class GameBoardComponent {
   isStartButtonVisible: boolean = true;
   ticker!: number;
   gameQuestion: Question | undefined;
@@ -18,12 +18,11 @@ export class GameBoardComponent implements OnInit {
   userAnswer: string = '';
   userScore: number;
   isSkipButtonVisible: boolean = true;
+  isGameOver: boolean = false;
 
   constructor(private questionService: QuestionsService) {
     this.userScore = 0;
   }
-
-  ngOnInit(): void {}
 
   startGame() {
     this.isStartButtonVisible = false;
@@ -52,19 +51,28 @@ export class GameBoardComponent implements OnInit {
       this.userScore++;
     }
   }
-
   nextQuestion() {
+    if (this.questionIndex == this.allQuestions.length) {
+      this.isGameOver = true;
+      return;
+    }
+
+    if (this.isLastQuestion()) {
+      this.isSkipButtonVisible = false;
+    }
     this.gameQuestion = this.allQuestions[this.questionIndex];
     this.hint = this.generateHint(this.gameQuestion.answer);
     this.questionIndex++;
     this.userAnswer = '';
+  }
 
+  private isLastQuestion(): boolean {
+    return this.questionIndex == this.allQuestions.length - 1;
   }
 
   skipQuestion() {
     this.nextQuestion();
     this.isSkipButtonVisible = false;
-
   }
 
   isCorrectAnswer(): boolean {
@@ -95,6 +103,6 @@ export class GameBoardComponent implements OnInit {
   }
 
   outOfTime() {
-    alert('Out of Time!');
+    this.isGameOver = true;
   }
 }
