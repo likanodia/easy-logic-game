@@ -1,73 +1,45 @@
-<form [formGroup]="registrationForm" class="sign-form">
+<form [formGroup]="registrationForm" (ngSubmit)="submitForm()" class="sign-form">
     <div>
-      <mat-form-field appearance="fill" class="email-form-material">
-        <mat-label>Enter your email</mat-label>
-        <input
-          matInput
-          placeholder="pat@example.com"
-          formControlName="email"
-          required
-        />
-        <mat-error *ngIf="email.invalid"> {{ getErrorMessage() }} </mat-error>
-      </mat-form-field>
+        <mat-form-field appearance="fill" class="email-form-material">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" required />
+            <mat-error *ngIf="email.invalid"> {{ getErrorMessage() }} </mat-error>
+        </mat-form-field>
     </div>
-  
+
     <div>
-      <mat-form-field appearance="fill" class="pass-form-material">
-        <mat-label>Enter your password</mat-label>
-        <input
-          formControlName="password"
-          matInput
-          [type]="hide ? 'password' : 'text'"
-        />
-        <mat-error *ngIf="password.invalid">
-          {{ getErrorMessagePass() }}</mat-error
-        >
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-      </mat-form-field>
+        <mat-form-field appearance="fill" class="pass-form-material">
+            <mat-label>Enter your password</mat-label>
+            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" />
+            <mat-error *ngIf="password.invalid">
+                {{ getErrorMessagePass() }}</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+        </mat-form-field>
     </div>
-  
+
     <div>
-      <mat-form-field appearance="fill" class="email-form-material">
-        <mat-label>Enter your name</mat-label>
-        <input
-          matInput
-          placeholder="pat@example.com"
-          formControlName="name"
-          required
-        />
-        <mat-error *ngIf="name.invalid"> {{ getErrorMessageName() }}</mat-error>
-      </mat-form-field>
+        <mat-form-field appearance="fill" class="email-form-material">
+            <mat-label>Enter your name</mat-label>
+            <input matInput placeholder="First name" formControlName="name" required />
+            <mat-error *ngIf="name.invalid"> {{ getErrorMessageName() }}</mat-error>
+        </mat-form-field>
     </div>
-  
+
     <div>
-      <mat-form-field appearance="fill" class="email-form-material">
-        <mat-label>Enter your lastname</mat-label>
-        <input
-          matInput
-          placeholder="pat@example.com"
-          formControlName="lastname"
-          required
-        />
-        <mat-error *ngIf="lastname.invalid">
-          {{ getErrorMessageLastName() }}</mat-error
-        >
-      </mat-form-field>
+        <mat-form-field appearance="fill" class="email-form-material">
+            <mat-label>Enter your lastname</mat-label>
+            <input matInput placeholder="Last name" formControlName="lastname" required />
+            <mat-error *ngIf="lastname.invalid">
+                {{ getErrorMessageLastName() }}</mat-error>
+        </mat-form-field>
     </div>
-  
+
     <div>
-      <mat-checkbox formControlName="admin" class="example-margin"
-        >Admin</mat-checkbox
-      >
+        <mat-checkbox formControlName="admin" class="example-margin">Admin</mat-checkbox>
     </div>
-  
+
     <button mat-raised-button color="primary">Register</button>
-  </form>
+</form>

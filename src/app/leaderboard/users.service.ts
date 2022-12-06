@@ -4,12 +4,15 @@ import { Observable } from 'rxjs';
 import { IUser } from './user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
-
-  constructor(private http: HttpClient) { }
-  getUsers():Observable<IUser[]>{
-    return this.http.get<IUser[]>(('http://localhost:3000/users'))
+  constructor(private http: HttpClient) {}
+  getUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>('http://localhost:3000/users');
+  }
+  createUser(user: IUser) {
+    user.highScore = 0;
+    return this.http.post('http://localhost:3000/users', user);
   }
 }

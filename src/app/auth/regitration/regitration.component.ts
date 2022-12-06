@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IUser } from 'src/app/leaderboard/user';
+import { UsersService } from 'src/app/leaderboard/users.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-regitration',
   templateUrl: './regitration.component.html',
-  styleUrls: ['./regitration.component.scss']
+  styleUrls: ['./regitration.component.scss'],
 })
-export class RegitrationComponent implements OnInit {
-  hide: any;
+export class RegitrationComponent {
+  hide: boolean = true;
   registrationForm = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     admin: new FormControl(''),
   });
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor(
+    private userService: UsersService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   get email() {
     return this.registrationForm.get('email') as FormControl;
@@ -59,5 +65,14 @@ export class RegitrationComponent implements OnInit {
     }
     return this.password.hasError('password') ? 'Not a valid lastname' : '';
   }
-
+  submitForm(): void {
+    if (this.registrationForm.valid) {
+      this.userService
+        .createUser(<IUser>this.registrationForm.value)
+        .subscribe((result) => {
+          this.authService.setToken('user');
+          this.router.navigate(['leaderboard']);
+        });
+    }
+  }
 }
