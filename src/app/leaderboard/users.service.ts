@@ -11,8 +11,8 @@ export class UsersService {
   getUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>('http://localhost:3000/users');
   }
-  createUser(user: IUser) {
+  createUser(user: IUser): Observable<IUser> {
     user.highScore = 0;
-    return this.http.post('http://localhost:3000/users', user);
+    return this.http.post<IUser>('http://localhost:3000/users', user);
   }
 }

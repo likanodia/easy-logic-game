@@ -38,7 +38,9 @@ export class RegitrationComponent {
   get lastname() {
     return this.registrationForm.get('lastname') as FormControl;
   }
-
+  get admin() {
+    return this.registrationForm.get('admin') as FormControl;
+  }
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
@@ -70,7 +72,11 @@ export class RegitrationComponent {
       this.userService
         .createUser(<IUser>this.registrationForm.value)
         .subscribe((result) => {
-          this.authService.setToken('user');
+          if (this.admin.value) {
+            this.authService.setToken('admin');
+          } else {
+            this.authService.setToken('user');
+          }
           this.router.navigate(['leaderboard']);
         });
     }
