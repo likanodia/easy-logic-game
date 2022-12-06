@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { AuthGuard } from './auth/auth.guard';
 import { AuthComponent } from './auth/auth/auth.component';
 import { NotfoundComponent } from './auth/notfound/notfound.component';
 import { GameBoardComponent } from './game/game-board/game-board.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'leaderboard', component: LeaderboardComponent },
       { path: 'admin', component: AdminPanelComponent },
     ],
+    canActivate: [AuthGuard],
   },
 
   { path: '**', component: NotfoundComponent },
