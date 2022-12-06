@@ -24,6 +24,7 @@ export class GameBoardComponent {
   isSkipButtonVisible: boolean = true;
   isGameOver: boolean = false;
   userPlaying: IUser | undefined;
+  isGameLogicVisible: boolean = true;
 
   constructor(
     private questionService: QuestionsService,
@@ -127,5 +128,6 @@ export class GameBoardComponent {
 
   outOfTime() {
     this.gameOver();
+    this.isGameLogicVisible = false;
   }
 }
