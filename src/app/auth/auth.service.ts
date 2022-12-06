@@ -9,8 +9,25 @@ import { UsersService } from '../leaderboard/users.service';
 })
 export class AuthService {
   constructor(private router: Router, private userService: UsersService) {}
-  setToken(token: string): void {
+  setUserRoleAndId(role: string, id: string) {
+    this.setUserRole(role);
+    this.setUserId(id);
+  }
+
+  private setUserRole(token: string): void {
     localStorage.setItem('token', token);
+  }
+
+  private setUserId(id: string): void {
+    localStorage.setItem('userId', id);
+  }
+
+  getUserId(): number {
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+      throw new Error('Failed to Login');
+    }
+    return parseInt(userId);
   }
 
   private getToken(): string | null {
@@ -34,10 +51,11 @@ export class AuthService {
         }
         let user = users[0];
         if (user.isAdmin) {
-          this.setToken('admin');
+          this.setUserRole('admin');
         } else {
-          this.setToken('user');
+          this.setUserRole('user');
         }
+        this.setUserId(user.id.toString());
         return of({ name: user.name, email: user.email });
       })
     );

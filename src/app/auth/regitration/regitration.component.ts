@@ -73,9 +73,9 @@ export class RegitrationComponent {
         .createUser(<IUser>this.registrationForm.value)
         .subscribe((result) => {
           if (this.admin.value) {
-            this.authService.setToken('admin');
+            this.authService.setUserRoleAndId('admin', result.id.toString());
           } else {
-            this.authService.setToken('user');
+            this.authService.setUserRoleAndId('user', result.id.toString());
           }
           this.router.navigate(['leaderboard']);
         });

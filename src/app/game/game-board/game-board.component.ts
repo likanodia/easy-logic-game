@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription, interval, take } from 'rxjs';
 import { Question } from 'src/app/admin/question';
 import { QuestionsService } from 'src/app/admin/questions.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { IUser } from 'src/app/leaderboard/user';
+import { UsersService } from 'src/app/leaderboard/users.service';
 
 @Component({
   selector: 'app-game-board',
@@ -14,14 +17,24 @@ export class GameBoardComponent {
   gameQuestion: Question | undefined;
   allQuestions: Question[] = [];
   questionIndex: number = 0;
+  gameTime: number = 60;
   hint: string = '********';
   userAnswer: string = '';
   userScore: number;
   isSkipButtonVisible: boolean = true;
   isGameOver: boolean = false;
+  userPlaying: IUser | undefined;
 
-  constructor(private questionService: QuestionsService) {
+  constructor(
+    private questionService: QuestionsService,
+    private userService: UsersService,
+    private auth: AuthService
+  ) {
     this.userScore = 0;
+    let userId = this.auth.getUserId();
+    this.userService.getUser(userId).subscribe((user: IUser) => {
+      this.userPlaying = user;
+    });
   }
 
   startGame() {
@@ -34,7 +47,7 @@ export class GameBoardComponent {
   }
 
   startTimer() {
-    this.ticker = 60;
+    this.ticker = this.gameTime;
     const numbers = interval(1000);
     const countdown = numbers.pipe(take(this.ticker));
     countdown.subscribe((x) => {
@@ -47,15 +60,20 @@ export class GameBoardComponent {
 
   checkAnswer() {
     if (this.isCorrectAnswer()) {
-      this.nextQuestion();
       this.userScore++;
+      this.nextQuestion();
     }
   }
 
   gameOver() {
     this.isGameOver = true;
+    if (this.userScore > this.userPlaying!.highScore) {
+      this.userService
+        .updateScore(this.userPlaying!.id, this.userScore)
+        .subscribe();
+    }
   }
-  
+
   nextQuestion() {
     if (this.questionIndex == this.allQuestions.length) {
       this.gameOver();
@@ -108,6 +126,6 @@ export class GameBoardComponent {
   }
 
   outOfTime() {
-    this.isGameOver = true;
+    this.gameOver();
   }
 }
