@@ -50,7 +50,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe(
         (result) => {
-          this.router.navigate(['admin']);
+          this.router.navigate(['leaderboard']);
         },
         (err: Error) => {
           alert(err.message);

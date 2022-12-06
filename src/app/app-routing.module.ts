@@ -10,7 +10,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard/leaderboard.comp
 
 const routes: Routes = [
   { path: 'login', component: AuthComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/leaderboard', pathMatch: 'full' },
   {
     path: '',
     component: HeaderComponent,
