@@ -51,9 +51,14 @@ export class GameBoardComponent {
       this.userScore++;
     }
   }
+
+  gameOver() {
+    this.isGameOver = true;
+  }
+  
   nextQuestion() {
     if (this.questionIndex == this.allQuestions.length) {
-      this.isGameOver = true;
+      this.gameOver();
       return;
     }
 
