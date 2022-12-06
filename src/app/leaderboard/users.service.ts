@@ -11,6 +11,17 @@ export class UsersService {
   getUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>('http://localhost:3000/users');
   }
+
+  getUser(id: number): Observable<IUser> {
+    return this.http.get<IUser>('http://localhost:3000/users/' + id);
+  }
+
+  findUsers(email: string, password: string): Observable<IUser[]> {
+    return this.http.get<IUser[]>('http://localhost:3000/users', {
+      params: { email: email, password: password },
+    });
+  }
+
   createUser(user: IUser): Observable<IUser> {
     user.highScore = 0;
     return this.http.post<IUser>('http://localhost:3000/users', user);
