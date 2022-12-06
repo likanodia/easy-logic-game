@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   hide: boolean = true;
 
   constructor(private router: Router, private auth: AuthService) {}
@@ -40,7 +40,10 @@ export class LoginComponent implements OnInit {
     return this.password.hasError('password') ? 'Not a valid password' : '';
   }
 
-  ngOnInit(): void {}
+  togglePasswordVisibility(event: any): void {
+    this.hide = !this.hide;
+    event.preventdefault();
+  }
 
   onSubmit(): void {
     console.log(this.loginForm.value);
