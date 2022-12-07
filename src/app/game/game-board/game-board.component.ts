@@ -25,6 +25,7 @@ export class GameBoardComponent {
   isGameOver: boolean = false;
   userPlaying: IUser | undefined;
   isGameLogicVisible: boolean = true;
+  isTimerHidden:  boolean = true;
 
   constructor(
     private questionService: QuestionsService,
@@ -129,5 +130,9 @@ export class GameBoardComponent {
   outOfTime() {
     this.gameOver();
     this.isGameLogicVisible = false;
+    this.isTimerHidden = false;
+    setTimeout(() => {
+      this.isTimerHidden = true;
+    }, 2000);
   }
 }

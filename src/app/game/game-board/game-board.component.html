@@ -37,3 +37,9 @@
     <span> Game Over</span>
     <p>Your score is {{userScore}}</p>
 </div>
+
+<div>
+    <mat-card *ngIf="!isTimerHidden" class="mat-timer">
+        <mat-card-content class="timer-text">Your Time Out 🙁 </mat-card-content>
+      </mat-card>
+</div>

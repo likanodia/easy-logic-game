@@ -18,7 +18,7 @@
     // border-color:#f44336;
        border-radius: 10px;
     // box-shadow: 2px 0px 7px 0px #f44336;
-    background-color: rgba(255, 255, 255, 0.642);
+    background-color: rgba(255, 255, 255, 0.66);
 
 }
 .answerInput {
@@ -57,3 +57,19 @@
     font-weight: 900;
     line-height: 40px;
 }
+.mat-timer {
+    position: fixed;
+    top: 5%;
+    right: 10%;
+    max-width: 400px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.552);
+  }
+  .timer-text {
+    font-size: 20px;
+    color: rgb(255, 0, 0);
+  }
