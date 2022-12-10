@@ -7,7 +7,7 @@
                 <mat-icon>favorite</mat-icon>
             </button>
         </div>
-        <span *ngIf="loggedInUser"> {{loggedInUser.name}}</span>
+        <span *ngIf="loggedInUser">Hey, {{loggedInUser.name}}</span>
         <button mat-raised-button color="warn" (click)="signOut()">
             Sign out
         </button>
